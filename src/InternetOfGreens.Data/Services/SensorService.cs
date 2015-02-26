@@ -19,9 +19,8 @@ namespace InternetOfGreens.Data
         }
 
         public List<Sensor> GetByPlant(string plantId)
-        {
-            var id = ObjectId.Parse(plantId);
-            Expression<Func<Sensor, bool>> find = s => s.Plants.Any(p => p.Id == id);
+        {            
+            Expression<Func<Sensor, bool>> find = s => s.Plants.Any(p => p.Id == plantId);
             return base.Filter(find).ToList();
         }
     }
