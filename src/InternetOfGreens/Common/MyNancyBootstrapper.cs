@@ -17,6 +17,7 @@ namespace InternetOfGreens.Common
             base.ConfigureApplicationContainer(container);
             container.Register<IPlantService>(new PlantService());
             container.Register<ISensorService>(new SensorService());
+            container.Register<ISampleService>(new SampleService());
 
             StaticConfiguration.DisableErrorTraces = false;
         }
