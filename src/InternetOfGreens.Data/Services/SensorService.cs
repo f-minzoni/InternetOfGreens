@@ -23,11 +23,5 @@ namespace InternetOfGreens.Data
             Expression<Func<Sensor, bool>> find = s => s.Plants.Any(p => p.Id == plantId);
             return base.Filter(find).ToList();
         }
-
-
-        public List<Sample> GetBySensor(string sensorId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

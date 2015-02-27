@@ -11,8 +11,7 @@ namespace InternetOfGreens.Domain
     public class Sample : MongoEntity
     {
         public double Value { get; set; }
-
-        [BsonId]
+                
         [BsonRepresentation(BsonType.ObjectId)]
         public string SensorId { get; set; }
 

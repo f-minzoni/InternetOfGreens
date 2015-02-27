@@ -19,7 +19,7 @@ namespace InternetOfGreens.Data
 
         public List<Sample> GetBySensor(string sensorId)
         {
-            Expression<Func<Sample, bool>> find = s => s.SensorId == sensorId;
+            Expression<Func<Sample, bool>> find = s => s.SensorId.Contains(sensorId);
             return base.Filter(find).ToList();
         }
 
