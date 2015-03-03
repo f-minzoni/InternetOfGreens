@@ -32,8 +32,10 @@ namespace InternetOfGreens
                     var sample = this.Bind<Sample>();
                     sample.Timestamp = DateTime.UtcNow;
 
-                    if (!String.IsNullOrWhiteSpace(sample.SensorId))
-                        svc.Create(sample);
+                    if (String.IsNullOrWhiteSpace(sample.SensorId))
+                        throw new Exception("invalid sensorId");
+                    
+                    svc.Create(sample);
                 }
                 catch (Exception)
                 {
