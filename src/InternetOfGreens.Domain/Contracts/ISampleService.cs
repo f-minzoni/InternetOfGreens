@@ -10,5 +10,6 @@ namespace InternetOfGreens.Domain
     {
         List<Sample> GetAll();
         List<Sample> GetBySensor(string sensorId);
+        void Create(Sample model);
     }
 }

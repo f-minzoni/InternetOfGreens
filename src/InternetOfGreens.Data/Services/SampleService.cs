@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InternetOfGreens.Data
 {
-    public class SampleService  : MongoRepository<Sample>, ISampleService 
+    public class SampleService : MongoRepository<Sample>, ISampleService 
     {
         public SampleService() : base("samples") { }
 
@@ -19,8 +19,13 @@ namespace InternetOfGreens.Data
 
         public List<Sample> GetBySensor(string sensorId)
         {
-            Expression<Func<Sample, bool>> find = s => s.SensorId.Contains(sensorId);
+            Expression<Func<Sample, bool>> find = s => s.SensorId == sensorId;
             return base.Filter(find).ToList();
+        }
+
+        public new void Create(Sample model)
+        {
+            base.Create(model);
         }
 
     }

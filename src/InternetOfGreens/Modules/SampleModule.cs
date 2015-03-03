@@ -1,4 +1,5 @@
 ﻿using Nancy;
+using Nancy.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,24 @@ namespace InternetOfGreens
             {
                 List<Sample> samples = svc.GetBySensor(parameters.sensorId);
                 return Response.AsJson<object>(samples);
+            };
+
+            Post["/"] = _ =>
+            {
+                try
+                {
+                    var sample = this.Bind<Sample>();
+                    sample.Timestamp = DateTime.UtcNow;
+
+                    if (!String.IsNullOrWhiteSpace(sample.SensorId))
+                        svc.Create(sample);
+                }
+                catch (Exception)
+                {
+                    return HttpStatusCode.BadRequest;
+                }
+
+                return HttpStatusCode.OK;
             };
         }
 
